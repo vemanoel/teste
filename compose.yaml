@@ -2,7 +2,6 @@ services:
   development:
     container_name: pornhubtv_development
     image: localhost/pornhubtv:development
-    privileged: true
     build:
       context: .
       dockerfile: Containerfile
