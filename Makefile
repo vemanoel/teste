@@ -52,9 +52,9 @@ launch:
 
 build:
 	podman compose exec dev bash -e <<'EOF'
+		mkdir -p apks
 		cd android
 		./gradlew clean
 		./gradlew :app:assembleRelease --no-daemon
-		mkdir -p ../apks
 		mv -f app/build/outputs/apk/release/*.apk ../apks
 	EOF
