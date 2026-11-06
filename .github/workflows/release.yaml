@@ -33,6 +33,7 @@ jobs:
       - name: Build artifacts
         run: make setup up build
         env:
+          NPM_INSTALL_EXTRA_ARGS: "--omit dev"
           VERSION_NAME: ${{ inputs.version_name }}
           VERSION_CODE: ${{ inputs.version_code }}
 
