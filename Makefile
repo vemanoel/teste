@@ -24,12 +24,6 @@ setup:
 		npx expo prebuild --clean --platform android
 	EOF
 
-setup:
-	podman compose exec dev bash -e <<'EOF'
-	npm install $(NPM_INSTALL_EXTRA_ARGS)
-	npx expo prebuild --clean --platform android
-	EOF
-
 connect\:firetv:
 	printf "[HOST:PORT]: "
 	read -r input
