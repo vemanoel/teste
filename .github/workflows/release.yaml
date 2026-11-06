@@ -31,7 +31,7 @@ jobs:
         run: sudo apt-get install --yes podman-compose
 
       - name: Build artifacts
-        run: make setup up build
+        run: make up setup build
         env:
           NPM_INSTALL_EXTRA_ARGS: "--omit=dev"
           VERSION_NAME: ${{ inputs.version_name }}
