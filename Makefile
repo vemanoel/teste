@@ -17,7 +17,7 @@ shell:
 	podman compose exec dev bash
 
 setup:
-	podman compose exec dev bash -e <<'EOF'
+	podman compose exec dev bash -ec <<'EOF'
 		export VERSION_NAME=$(VERSION_NAME)
 		export VERSION_CODE=$(VERSION_CODE)
 		export EXPO_NO_GIT_STATUS=1
@@ -46,7 +46,7 @@ launch:
 	podman compose exec dev npx expo run:android
 
 build:
-	podman compose exec dev bash -e <<'EOF'
+	podman compose exec dev bash -ec <<'EOF'
 		mkdir -p apks
 		cd android
 		./gradlew clean
