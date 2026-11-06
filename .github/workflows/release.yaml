@@ -30,6 +30,8 @@ jobs:
       - name: Install podman-compose
         run: sudo apt-get install --yes podman-compose
 
+      - run: buildah version
+    
       - name: Build artifacts
         run: make up setup build
         env:
