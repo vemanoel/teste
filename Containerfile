@@ -16,31 +16,21 @@ ENV ANDROID_SDK_ROOT=/opt/android-sdk
 ENV PATH=$ANDROID_HOME/platform-tools:$PATH
 ENV PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
 
-# SHELL ["/bin/bash", "-c"]
+RUN apt-get update -qq --yes && \
+    apt-get install -qq --yes --no-install-recommends ca-certificates curl unzip && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN <<EOF
-set -e
+RUN curl -fsSLO --retry 10 --retry-all-errors https://dl.google.com/android/repository/platform-tools_r37.0.1-linux.zip && \
+    unzip -q platform-tools_r37.0.1-linux.zip && \
+    rm platform-tools_r37.0.1-linux.zip && \
+    mv platform-tools $ANDROID_HOME
 
-apt-get update -qq --yes
-apt-get install -qq --yes --no-install-recommends ca-certificates curl unzip
+RUN mkdir -p $ANDROID_HOME/cmdline-tools && \
+    curl -fsSLO --retry 10 --retry-all-errors https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip && \
+    unzip -q commandlinetools-linux-15859902_latest.zip && \
+    rm commandlinetools-linux-15859902_latest.zip && \
+    mv cmdline-tools $ANDROID_HOME/cmdline-tools/latest && \
+    yes | sdkmanager --licenses > /dev/null
 
-alias curl='curl -fsSLO --retry 10 --retry-all-errors'
-
-mkdir $ANDROID_HOME
-
-curl https://dl.google.com/android/repository/platform-tools_r37.0.1-linux.zip
-unzip -q platform-tools_r37.0.1-linux.zip
-rm platform-tools_r37.0.1-linux.zip
-mv platform-tools $ANDROID_HOME
-
-mkdir $ANDROID_HOME/cmdline-tools
-curl https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip
-unzip -q commandlinetools-linux-15859902_latest.zip
-rm commandlinetools-linux-15859902_latest.zip
-mv cmdline-tools $ANDROID_HOME/cmdline-tools/latest
-yes | sdkmanager --licenses > /dev/null
-
-apt-get purge --yes ca-certificates curl unzip
-apt-get autoremove --yes
-rm -rf /var/lib/apt/lists/*
-EOF
+RUN apt-get purge --yes ca-certificates curl unzip && \
+    apt-get autoremove --yes
