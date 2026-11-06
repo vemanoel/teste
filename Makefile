@@ -18,7 +18,7 @@ down:
 shell:
 	podman compose exec development bash
 
-prebuild:
+setup:
 	podman compose exec development bash -e <<'EOF'
 	if [ "$$CI" = "true" ]; then
 		npm install --omit=dev
@@ -43,10 +43,10 @@ connect-phone:
 	read -r input
 	podman compose exec -T development adb connect $$input
 
-start:
+serve:
 	podman compose exec development npx expo start
 
-install:
+run:
 	podman compose exec development npx expo run:android
 
 build:
