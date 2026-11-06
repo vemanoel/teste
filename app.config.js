@@ -1,11 +1,11 @@
 export default {
   expo: {
     name: 'Pornhub TV',
-    version: process.env.APP_VERSION || '0.0.0',
+    version: process.env.VERSION || '0.0.0',
     slug: 'pornhubtv',
     android: {
       package: 'com.pornhubtv.app',
-      versionCode: Number(process.env.ANDROID_VERSION_CODE || 1),
+      versionCode: Number(process.env.VERSION_CODE || 1),
     },
     plugins: [
       [
