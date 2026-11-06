@@ -41,18 +41,27 @@ Make sure that following tools are installed on your machine:
 
 ### Running
 
-1. If you are not connected to the device, run:
+1. ...
     ```bash
     make up
-    make connect-firetv
     ```
-1. If this is the first time you're running this, or if a file within the Android folder has been modified, run this command:
+
+2. ...
     ```bash
-    make install
+    make setup
+    ```
+
+3. ...
+    ```bash
+    make connect:firetv
+    ```
+
+4. ...
+    ```bash
+    make serve
    ```
-1. Open the app on your firetv
-2. Open a terminal in the project root directory and run:
+
+5. ...
     ```bash
-    make start
+    make launch
     ```
-2. Open the TVApp
