@@ -46,6 +46,7 @@ install:
 	npx expo run:android --no-bundler
 	EOF
 
+# npm install --omit=dev na ci
 build:
 	podman compose exec development bash -e <<'EOF'
 	export VERSION_CODE=$(VERSION_CODE)
