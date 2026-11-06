@@ -1,7 +1,7 @@
 services:
-  development:
-    container_name: pornhubtv_development
-    image: localhost/pornhubtv:development
+  dev:
+    container_name: pornhubtv_dev
+    image: localhost/pornhubtv:dev
     build:
       context: .
       dockerfile: Containerfile
