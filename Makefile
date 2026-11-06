@@ -29,12 +29,12 @@ setup:
 	npx expo prebuild --clean --platform android
 	EOF
 
-connect-firetv:
+connect\:firetv:
 	printf "[HOST:PORT]: "
 	read -r input
 	podman compose exec -T development adb connect $$input
 
-connect-phone:
+connect\:phone:
 	printf "[HOST:PORT] [PAIRING CODE]: "
 	read -r input
 	podman compose exec -T development adb pair $$input
