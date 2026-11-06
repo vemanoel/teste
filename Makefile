@@ -56,7 +56,7 @@ build:
 
 	cd android
 	./gradlew clean
-	./gradlew assembleRelease --no-daemon --warning-mode all
+	./gradlew :app:assembleRelease --no-daemon --warning-mode=all
 
 	OUTDIR=$${OUTDIR:-$$(pwd)/apks}
 	mkdir -p $$OUTDIR
