@@ -1,3 +1,6 @@
+.ONESHELL:
+.SILENT:
+
 export
 
 PODMAN_COMPOSE_PROVIDER ?= $(shell command -v podman-compose)
@@ -7,9 +10,6 @@ PODMAN_COMPOSE_WARNING_LOGS = false
 CI ?= false
 VERSION_CODE ?=
 VERSION_NAME ?=
-
-.ONESHELL:
-.SILENT:
 
 up:
 	podman compose up --build --detach
