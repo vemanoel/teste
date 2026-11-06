@@ -54,9 +54,9 @@ build:
 	podman compose exec dev bash -e <<'EOF'
 		cd android
 		./gradlew clean
-		./gradlew :app:assembleRelease --no-daemon --warning-mode=all
-	
-		OUTDIR=$${OUTDIR:-$$(pwd)/apks}
+		./gradlew :app:assembleRelease --no-daemon
+
+		OUTDIR=../apks
 		mkdir -p $$OUTDIR
 		mv -f app/build/outputs/apk/release/*.apk $$OUTDIR
 	EOF
