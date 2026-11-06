@@ -51,6 +51,9 @@ launch:
 
 build:
 	podman compose exec development bash -e <<'EOF'
+	export VERSION_NAME=$(VERSION_NAME)
+	export VERSION_CODE=$(VERSION_CODE)
+
 	cd android
 	./gradlew clean
 	./gradlew :app:assembleRelease --no-daemon --warning-mode=all
