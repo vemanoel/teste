@@ -8,8 +8,6 @@ COMPOSE_FILE ?= compose.yaml
 PODMAN_COMPOSE_WARNING_LOGS = false
 
 CI ?= false
-VERSION_CODE ?=
-VERSION_NAME ?=
 
 up:
 	podman compose up --build --detach
@@ -53,12 +51,6 @@ install:
 
 build:
 	podman compose exec development bash -e <<'EOF'
-    export CI=$(CI)
-	export VERSION_CODE=$(VERSION_CODE)
-	export VERSION_NAME=$(VERSION_NAME)
-
-	npm install --omit=dev
-
 	cd android
 	./gradlew clean
 	./gradlew :app:assembleRelease --no-daemon --warning-mode=all
