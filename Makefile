@@ -55,8 +55,6 @@ build:
 		cd android
 		./gradlew clean
 		./gradlew :app:assembleRelease --no-daemon
-
-		OUTDIR=../apks
-		mkdir -p $$OUTDIR
-		mv -f app/build/outputs/apk/release/*.apk $$OUTDIR
+		mkdir -p ../apks
+		mv -f app/build/outputs/apk/release/*.apk ../apks
 	EOF
