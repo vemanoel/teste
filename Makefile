@@ -3,6 +3,8 @@
 
 export
 
+SHELL := /bin/bash
+
 PODMAN_COMPOSE_PROVIDER ?= $(shell command -v podman-compose)
 COMPOSE_FILE ?= compose.yaml
 PODMAN_COMPOSE_WARNING_LOGS = false
