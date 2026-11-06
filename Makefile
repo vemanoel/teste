@@ -48,6 +48,7 @@ install:
 
 build:
 	podman compose exec development bash -e <<'EOF'
+    export CI=$(CI)
 	export VERSION_CODE=$(VERSION_CODE)
 	export VERSION_NAME=$(VERSION_NAME)
 
