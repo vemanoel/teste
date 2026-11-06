@@ -1,3 +1,7 @@
+https://github.com/streamyfin/streamyfin/blob/df7bdf9cc57c824eba525961295cc0e65fb46c7d/package.json
+
+
+
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
