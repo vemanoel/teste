@@ -34,17 +34,22 @@ connect-phone:
 	read -r input
 	podman compose exec -T development adb connect $$input
 
-start:
+prebuild:
 	podman compose exec development bash -e <<'EOF'
-	npm install
-	npx expo start
+	if [ "$$CI" = "true" ]; then
+		npm install --omit=dev
+	else
+		npm install
+	fi
+
+	npx expo prebuild --clean --platform android
 	EOF
 
+start:
+	podman compose exec development npx expo start
+
 install:
-	podman compose exec development bash -e <<'EOF'
-	npm install
-	npx expo run:android --no-bundler
-	EOF
+	podman compose exec development npx expo run:android
 
 build:
 	podman compose exec development bash -e <<'EOF'
