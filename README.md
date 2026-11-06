@@ -13,7 +13,9 @@ An unofficial client that brings Pornhub to Amazon Fire TV devices.
 
 ## Development
 
-### Prerequisitoes
+### Prerequisites
+
+Make sure that following tools are installed on your machine:
 
 - [just](https://just.systems/man/en/packages.html)
 - [podman](https://podman.io/docs/installation)
