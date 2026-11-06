@@ -26,11 +26,11 @@ connect-firetv:
 	podman compose exec -T development adb connect $$input
 
 connect-phone:
-	printf "HOST[:PORT] [PAIRING CODE]: "
+	printf "[HOST:PORT] [PAIRING CODE]: "
 	read -r input
 	podman compose exec -T development adb pair $$input
 
-	printf "HOST[:PORT]: "
+	printf "[HOST:PORT]: "
 	read -r input
 	podman compose exec -T development adb connect $$input
 
