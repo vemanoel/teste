@@ -20,12 +20,7 @@ shell:
 
 setup:
 	podman compose exec development bash -e <<'EOF'
-	if [ "$$CI" = "true" ]; then
-		npm install --omit=dev
-	else
-		npm install
-	fi
-
+	npm install $(NPM_INSTALL_EXTRA_ARGS)
 	npx expo prebuild --clean --platform android
 	EOF
 
