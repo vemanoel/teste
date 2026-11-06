@@ -1,5 +1,5 @@
 {
-	"main": "src/main.jsx",
+	"main": "src/main.js",
 	"dependencies": {
 		"@react-navigation/drawer": "6.6.15",
 		"@react-navigation/native": "6.1.17",
