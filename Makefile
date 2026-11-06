@@ -21,7 +21,7 @@ setup:
 		export VERSION_NAME=$(VERSION_NAME)
 		export VERSION_CODE=$(VERSION_CODE)
 		export EXPO_NO_GIT_STATUS=1
-		npm install $(NPM_INSTALL_EXTRA_ARGS)
+		npm install
 		npx expo prebuild --clean --platform android
 	EOF
 
