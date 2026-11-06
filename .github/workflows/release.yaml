@@ -29,13 +29,10 @@ jobs:
       
       - name: Install podman-compose
         run: sudo apt-get install --yes podman-compose
-
-      - run: buildah version
     
       - name: Build artifacts
         run: make up setup build
         env:
-          PODMAN_COMPOSE_PROVIDER: /usr/bin/podman-compose
           NPM_INSTALL_EXTRA_ARGS: "--omit=dev"
           VERSION_NAME: ${{ inputs.version_name }}
           VERSION_CODE: ${{ inputs.version_code }}
