@@ -2,11 +2,15 @@ name: release
 on:
   workflow_dispatch: 
     inputs:
-      version:
+      version_name:
         type: string
         required: true
-        description: "version"
-  
+        description: "VERSION NAME"
+      version_code:
+        type: string
+        required: true
+        description: "VERSION CODE"
+
 jobs:
   build:
     runs-on: ubuntu-24.04
@@ -28,11 +32,15 @@ jobs:
         run: sudo apt-get install --yes podman-compose
 
       - name: Build artifacts
-        run: make up && make build
+        run: |
+          export VERSION_NAME=${{ inputs.version_name }}
+          export VERSION_CODE=${{ inputs.version_code }}
+          make up
+          make build
 
       - uses: softprops/action-gh-release@v3.0.3
         with:
           files: apks/*
           generate_release_notes: true
-          tag_name: v${{ inputs.version }}
+          tag_name: v${{ inputs.version_name }}
   
