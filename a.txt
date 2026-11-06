@@ -1,0 +1,90 @@
+import * as SplashScreen from 'expo-splash-screen';
+import { useEffect, useState } from 'react';
+import { View, Text } from 'react-native';
+
+// Keep the splash screen visible while we fetch resources
+SplashScreen.preventAutoHideAsync();
+
+export default function RootLayout() {
+  const [appIsReady, setAppIsReady] = useState(false);
+
+  useEffect(() => {
+    async function prepare() {
+      try {
+        // Load fonts, make API calls, or load cache here
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        setAppIsReady(true);
+      }
+    }
+
+    prepare();
+  }, []);
+
+  useEffect(() => {
+    if (appIsReady) {
+      // Hide the native splash screen once your app is ready
+      SplashScreen.hideAsync();
+    }
+  }, [appIsReady]);
+
+  if (!appIsReady) {
+    return null; // Or return a custom loading/splash view component here
+  }
+
+  return <View style={{ flex: 1 }}><Text>My App Content</Text></View>;
+}
+
+
+
+
+
+
+
+const { withAppBuildGradle } = require('@expo/config-plugins');
+
+module.exports = function withApkName(config) {
+  const version = (
+    process.env.APP_VERSION ||
+    config.version ||
+    '0.0.0'
+  ).replace(/[^a-zA-Z0-9._-]/g, '-');
+
+  const versionCode = (
+    process.env.ANDROID_VERSION_CODE ||
+    config.android?.versionCode ||
+    1
+  ).toString();
+
+  return withAppBuildGradle(config, (config) => {
+    const start = '// @generated with-apk-name';
+    const end = '// @end with-apk-name';
+
+    let contents = config.modResults.contents;
+
+    const startIndex = contents.indexOf(start);
+    const endIndex = contents.indexOf(end);
+
+    if (startIndex !== -1 && endIndex !== -1) {
+      contents =
+        contents.slice(0, startIndex) +
+        contents.slice(endIndex + end.length);
+    }
+
+    contents += `
+
+${start}
+android.applicationVariants.all { variant ->
+    variant.outputs.all {
+        outputFileName = "pornhub-tv-${version}-${versionCode}.apk"
+    }
+}
+${end}
+`;
+
+    config.modResults.contents = contents;
+    return config;
+  });
+};
