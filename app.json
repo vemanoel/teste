@@ -9,10 +9,10 @@
         }
       ]
     ],
-    "name": "pornhubTV",
-    "slug": "pornhubTV",
+    "name": "Pornhub TV",
+    "slug": "pornhubtv",
     "android": {
-      "package": "com.anonymous.pornhubTV"
+      "package": "com.pornhubtv.app"
     }
   }
 }
