@@ -14,10 +14,10 @@ down:
 	podman compose down
 
 shell:
-	podman compose exec development bash
+	podman compose exec dev bash
 
 setup:
-	podman compose exec development bash -e <<'EOF'
+	podman compose exec dev bash -e <<'EOF'
 	npm install $(NPM_INSTALL_EXTRA_ARGS)
 	npx expo prebuild --clean --platform android
 	EOF
@@ -25,33 +25,30 @@ setup:
 connect\:firetv:
 	printf "[HOST:PORT]: "
 	read -r input
-	podman compose exec -T development adb connect $$input
+	podman compose exec -T dev adb connect $$input
 
 connect\:phone:
 	printf "[HOST:PORT] [PAIRING CODE]: "
 	read -r input
-	podman compose exec -T development adb pair $$input
+	podman compose exec -T dev adb pair $$input
 
 	printf "[HOST:PORT]: "
 	read -r input
-	podman compose exec -T development adb connect $$input
+	podman compose exec -T dev adb connect $$input
 
 serve:
-	podman compose exec development npx expo start
+	podman compose exec dev npx expo start
 
 launch:
-	podman compose exec development npx expo run:android
+	podman compose exec dev npx expo run:android
 
 build:
-	podman compose exec development bash -e <<'EOF'
-	export VERSION_NAME=$(VERSION_NAME)
-	export VERSION_CODE=$(VERSION_CODE)
-
-	cd android
-	./gradlew clean
-	./gradlew :app:assembleRelease --no-daemon --warning-mode=all
-
-	OUTDIR=$${OUTDIR:-$$(pwd)/apks}
-	mkdir -p $$OUTDIR
-	mv -f app/build/outputs/apk/release/*.apk $$OUTDIR
+	podman compose exec -e VERSION_NAME -e VERSION_CODE dev bash -e <<'EOF'
+		cd android
+		./gradlew clean
+		./gradlew :app:assembleRelease --no-daemon --warning-mode=all
+	
+		OUTDIR=$${OUTDIR:-$$(pwd)/apks}
+		mkdir -p $$OUTDIR
+		mv -f app/build/outputs/apk/release/*.apk $$OUTDIR
 	EOF
