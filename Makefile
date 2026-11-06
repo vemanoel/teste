@@ -3,11 +3,11 @@
 
 export
 
+CI ?= false
+
 PODMAN_COMPOSE_PROVIDER ?= $(shell command -v podman-compose)
 COMPOSE_FILE ?= compose.yaml
 PODMAN_COMPOSE_WARNING_LOGS = false
-
-CI ?= false
 
 up:
 	podman compose up --build --detach
@@ -17,6 +17,17 @@ down:
 
 shell:
 	podman compose exec development bash
+
+prebuild:
+	podman compose exec development bash -e <<'EOF'
+	if [ "$$CI" = "true" ]; then
+		npm install --omit=dev
+	else
+		npm install
+	fi
+
+	npx expo prebuild --clean --platform android
+	EOF
 
 connect-firetv:
 	printf "[HOST:PORT]: "
@@ -31,17 +42,6 @@ connect-phone:
 	printf "[HOST:PORT]: "
 	read -r input
 	podman compose exec -T development adb connect $$input
-
-prebuild:
-	podman compose exec development bash -e <<'EOF'
-	if [ "$$CI" = "true" ]; then
-		npm install --omit=dev
-	else
-		npm install
-	fi
-
-	npx expo prebuild --clean --platform android
-	EOF
 
 start:
 	podman compose exec development npx expo start
