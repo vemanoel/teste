@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import LeftHandNav from './navigation/LeftHandNav';
+import LeftHandNav from './src/navigation/LeftHandNav';
 
 const App = () => {
   return (
