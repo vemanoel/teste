@@ -17,13 +17,13 @@ shell:
 	podman compose exec dev bash
 
 setup:
-	podman compose exec dev bash -se <<'EOF'
-		export VERSION_NAME=$(VERSION_NAME)
-		export VERSION_CODE=$(VERSION_CODE)
-		export EXPO_NO_GIT_STATUS=1
-		npm install
-		npx expo prebuild --clean --platform android
-	EOF
+	podman compose exec dev bash -c '
+	export VERSION_NAME=$(VERSION_NAME)
+	export VERSION_CODE=$(VERSION_CODE)
+	export EXPO_NO_GIT_STATUS=1
+	npm install
+	npx expo prebuild --clean --platform android
+	'
 
 connect\:firetv:
 	printf "[HOST:PORT]: "
@@ -46,10 +46,10 @@ launch:
 	podman compose exec dev npx expo run:android
 
 build:
-	podman compose exec dev bash -se <<'EOF'
-		mkdir -p apks
-		cd android
-		./gradlew clean
-		./gradlew :app:assembleRelease --no-daemon
-		mv -f app/build/outputs/apk/release/*.apk ../apks
-	EOF
+	podman compose exec dev bash -c '
+	mkdir -p apks
+	cd android
+	./gradlew clean
+	./gradlew :app:assembleRelease --no-daemon
+	mv -f app/build/outputs/apk/release/*.apk ../apks
+	'
