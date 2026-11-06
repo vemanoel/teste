@@ -21,7 +21,7 @@ shell:
 	podman compose exec development bash
 
 connect-firetv:
-	printf "HOST[:PORT]: "
+	printf "[HOST:PORT]: "
 	read -r input
 	podman compose exec -T development adb connect $$input
 
@@ -46,13 +46,12 @@ install:
 	npx expo run:android --no-bundler
 	EOF
 
-# npm install --omit=dev na ci
 build:
 	podman compose exec development bash -e <<'EOF'
 	export VERSION_CODE=$(VERSION_CODE)
 	export VERSION_NAME=$(VERSION_NAME)
 
-	npm install
+	npm install --omit=dev
 
 	cd android
 	./gradlew clean
