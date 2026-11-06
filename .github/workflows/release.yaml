@@ -35,6 +35,7 @@ jobs:
       - name: Build artifacts
         run: make up setup build
         env:
+          PODMAN_COMPOSE_PROVIDER: /usr/bin/podman-compose
           NPM_INSTALL_EXTRA_ARGS: "--omit=dev"
           VERSION_NAME: ${{ inputs.version_name }}
           VERSION_CODE: ${{ inputs.version_code }}
