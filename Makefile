@@ -18,6 +18,14 @@ shell:
 
 setup:
 	podman compose exec dev bash -e <<'EOF'
+		export VERSION_NAME=$(VERSION_NAME)
+		export VERSION_CODE=$(VERSION_CODE)
+		npm install $(NPM_INSTALL_EXTRA_ARGS)
+		npx expo prebuild --clean --platform android
+	EOF
+
+setup:
+	podman compose exec dev bash -e <<'EOF'
 	npm install $(NPM_INSTALL_EXTRA_ARGS)
 	npx expo prebuild --clean --platform android
 	EOF
@@ -43,7 +51,7 @@ launch:
 	podman compose exec dev npx expo run:android
 
 build:
-	podman compose exec -e VERSION_NAME -e VERSION_CODE dev bash -e <<'EOF'
+	podman compose exec dev bash -e <<'EOF'
 		cd android
 		./gradlew clean
 		./gradlew :app:assembleRelease --no-daemon --warning-mode=all
