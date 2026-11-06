@@ -17,7 +17,9 @@ ENV PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
 
 # SHELL ["/bin/bash", "-c"]
 
-RUN bash -e <<EOF
+RUN <<EOF
+set -e
+
 apt-get update -qq --yes
 apt-get install -qq --yes --no-install-recommends ca-certificates curl unzip
 
