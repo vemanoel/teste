@@ -1,20 +1,9 @@
 apks/
 
+android/
+
 .expo/
 node_modules/
 
 .DS_Store
 
-android/build/
-android/.gradle
-android/local.properties
-android/.cxx/
-android/*.jsbundle
-android/*.iml
-android/*.hprof
-android/*.jks
-android/*.p8
-android/*.p12
-android/*.key
-android/*.mobileprovision
-android/*.orig.*
