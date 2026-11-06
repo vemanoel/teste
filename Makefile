@@ -46,7 +46,7 @@ connect-phone:
 serve:
 	podman compose exec development npx expo start
 
-run:
+launch:
 	podman compose exec development npx expo run:android
 
 build:
