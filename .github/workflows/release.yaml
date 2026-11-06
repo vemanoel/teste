@@ -1,0 +1,38 @@
+name: release
+on:
+  workflow_dispatch: 
+    inputs:
+      version:
+        type: string
+        required: true
+        description: "version"
+  
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+
+    permissions:
+      contents: write
+  
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+  
+      - name: Install podman
+        run: sudo apt-get install --yes podman
+      
+      - name: Install podman-compose
+        run: sudo apt-get install --yes podman-compose
+
+      - name: Build artifacts
+        run: make up && make build
+
+      - uses: softprops/action-gh-release@v3.0.3
+        with:
+          files: apks/*
+          generate_release_notes: true
+          tag_name: v${{ inputs.version }}
+  
