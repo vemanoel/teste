@@ -23,7 +23,7 @@ export default {
             buildToolsVersion: '36.0.0',
             kotlinVersion: '2.1.20',
             minSdkVersion: 26,
-            ndkVersion: "27.0.12077973",
+            ndkVersion: "28.2.13676358",
 
             useAndroidX: true,
             gifEnabled: true,
