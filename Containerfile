@@ -13,7 +13,6 @@ RUN npm install -g npm@12.2.2
 
 ENV ANDROID_HOME=/opt/android-sdk
 ENV ANDROID_SDK_ROOT=/opt/android-sdk
-ENV ANDROID_NDK_HOME=$ANDROID_HOME/ndk/28.2.13676358
 ENV PATH=$ANDROID_HOME/platform-tools:$PATH
 ENV PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
 
@@ -26,8 +25,7 @@ RUN mkdir -p $ANDROID_HOME/cmdline-tools && \
     unzip -q commandlinetools-linux-15859902_latest.zip && \
     rm commandlinetools-linux-15859902_latest.zip && \
     mv cmdline-tools $ANDROID_HOME/cmdline-tools/latest && \
-    yes | sdkmanager --licenses > /dev/null && \
-    sdkmanager --install "platforms;android-36" "build-tools;36.0.0" "ndk;28.2.13676358"
+    yes | sdkmanager --licenses > /dev/null
 
 RUN curl -fsSLO --retry 10 --retry-all-errors https://dl.google.com/android/repository/platform-tools_r37.0.1-linux.zip && \
     unzip -q platform-tools_r37.0.1-linux.zip && \
