@@ -34,17 +34,6 @@ export default {
           }),
       ],
       [
-        (config) => withGradleProperties(config, (c) => {
-            c.modResults.push({
-              type: 'property',
-              key: 'ndkVersion',
-              value: '28.2.13676358',
-            });
-    
-            return c;
-          }),
-      ],
-      [
         'expo-build-properties',
         {
           android: {
