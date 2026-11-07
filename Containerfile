@@ -9,6 +9,7 @@ ARG NODE_IMAGE=docker.io/library/node:26.13.0-trixie-slim@sha256:e4db4c914bf8ad2
 COPY --from=$NODE_IMAGE /usr/local/bin /usr/local/bin
 COPY --from=$NODE_IMAGE /usr/local/lib/node_modules /usr/local/lib/node_modules
 COPY --from=$NODE_IMAGE /usr/lib/x86_64-linux-gnu/libatomic.so.1 /usr/lib/x86_64-linux-gnu
+RUN: npm install -g npm@12.2.2
 
 ENV ANDROID_HOME=/opt/android-sdk
 ENV ANDROID_SDK_ROOT=/opt/android-sdk
