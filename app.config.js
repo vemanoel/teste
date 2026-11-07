@@ -1,5 +1,3 @@
-const { withProjectBuildGradle } = require('expo/config-plugins');
-
 export default {
   expo: {
     name: 'Pornhub TV',
@@ -16,25 +14,6 @@ export default {
           isTV: true,
         },
       ],
-     function (config) {
-      return withProjectBuildGradle(config, function (cfg) {
-        const contents = cfg.modResults.contents;
-    
-        if (/ndkVersion\s*=/.test(contents)) {
-          cfg.modResults.contents = contents.replace(
-            /ndkVersion\s*=.*$/m,
-            'ndkVersion = "28.2.13676358"'
-          );
-        } else {
-          cfg.modResults.contents = contents.replace(
-            /buildscript\s*\{/,
-            'buildscript {\n    ext {\n        ndkVersion = "28.2.13676358"\n    }'
-          );
-        }
-    
-        return cfg;
-      });
-    },
       [
         'expo-build-properties',
         {
