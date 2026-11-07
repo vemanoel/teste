@@ -1,16 +1,5 @@
 const { withProjectBuildGradle } = require('expo/config-plugins');
 
-const withCustomNdkVersion = (config, ndkVersion) => {
-  return withGradleProperties(config, (cfg) => {
-    cfg.modResults.push({
-      type: 'property',
-      key: 'ndkVersion',
-      value: ndkVersion,
-    });
-    return cfg;
-  });
-};
-
 export default {
   expo: {
     name: 'Pornhub TV',
