@@ -1,13 +1,7 @@
-import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import LeftHandNav from './src/navigation/LeftHandNav';
+import { Text } from 'react-native';
 
 const App = () => {
-  return (
-    <NavigationContainer>
-      <LeftHandNav />
-    </NavigationContainer>
-  );
+  return <Text>Hello World</Text>;
 };
 
 export default App;
