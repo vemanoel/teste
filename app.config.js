@@ -1,3 +1,5 @@
+import { withGradleProperties } from '@expo/config-plugins';
+
 export default {
   expo: {
     name: 'Pornhub TV',
@@ -13,6 +15,17 @@ export default {
         {
           isTV: true,
         },
+      ],
+      [
+        (config) => withGradleProperties(config, (c) => {
+            c.modResults.push({
+              type: 'property',
+              key: 'ndkVersion',
+              value: '28.2.13676358',
+            });
+    
+            return c;
+          }),
       ],
       [
         'expo-build-properties',
