@@ -13,6 +13,7 @@ RUN npm install -g npm@12.2.2
 
 ENV ANDROID_HOME=/opt/android-sdk
 ENV ANDROID_SDK_ROOT=/opt/android-sdk
+ENV ANDROID_NDK_HOME=$ANDROID_HOME/ndk/28.2.13676358
 ENV PATH=$ANDROID_HOME/platform-tools:$PATH
 ENV PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
 
