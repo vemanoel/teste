@@ -16,18 +16,25 @@ export default {
           isTV: true,
         },
       ],
-      function (config) {
-        return withProjectBuildGradle(config, function (cfg) {
-          const pattern = /ndkVersion\s*=\s*['"][^'"]+['"]/;
-  
-          cfg.modResults.contents = cfg.modResults.contents.replace(
-            pattern,
+     function (config) {
+      return withProjectBuildGradle(config, function (cfg) {
+        const contents = cfg.modResults.contents;
+    
+        if (/ndkVersion\s*=/.test(contents)) {
+          cfg.modResults.contents = contents.replace(
+            /ndkVersion\s*=.*$/m,
             'ndkVersion = "28.2.13676358"'
           );
-  
-          return cfg;
-        });
-      },
+        } else {
+          cfg.modResults.contents = contents.replace(
+            /buildscript\s*\{/,
+            'buildscript {\n    ext.ndkVersion = "28.2.13676358"'
+          );
+        }
+    
+        return cfg;
+      });
+    },
       [
         'expo-build-properties',
         {
