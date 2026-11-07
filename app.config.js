@@ -40,7 +40,7 @@ export default {
             compileSdkVersion: 37,
             targetSdkVersion: 37,
             buildToolsVersion: '36.0.0',
-            kotlinVersion: '2.2.10',
+            kotlinVersion: '2.4.21',
             minSdkVersion: 26,
             ndkVersion: "28.2.13676358",
 
