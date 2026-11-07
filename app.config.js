@@ -18,12 +18,12 @@ export default {
         'expo-build-properties',
         {
           android: {
-            compileSdkVersion: 36,
-            targetSdkVersion: 36,
-            buildToolsVersion: '36.0.0',
-            kotlinVersion: '2.2.10',
-            minSdkVersion: 26,
-            ndkVersion: "28.2.13676358",
+            // compileSdkVersion: 36,
+            // targetSdkVersion: 36,
+            // buildToolsVersion: '36.0.0',
+            // kotlinVersion: '2.2.10',
+            // minSdkVersion: 26,
+            // ndkVersion: "28.2.13676358",
 
             useAndroidX: true,
             gifEnabled: true,
