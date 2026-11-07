@@ -28,7 +28,7 @@ export default {
         } else {
           cfg.modResults.contents = contents.replace(
             /buildscript\s*\{/,
-            'buildscript {\n    ext.ndkVersion = "28.2.13676358"'
+            'buildscript {\n    ext {\n        ndkVersion = "28.2.13676358"\n    }'
           );
         }
     
