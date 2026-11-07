@@ -32,4 +32,4 @@ RUN mkdir -p $ANDROID_HOME/cmdline-tools && \
     mv cmdline-tools $ANDROID_HOME/cmdline-tools/latest && \
     yes | sdkmanager --licenses > /dev/null
 
-RUN apt-get purge --yes curl unzip && apt-get autoremove --yes
+RUN apt-get purge --yes curl unzip && apt-get ca-certificates autoremove --yes
